@@ -6,6 +6,8 @@ Restrições
 - Pessoa concorrendo tem que ser condizente com a categoria e com o filme
 - Ano do filme tem que ser condizente com o ano da edição
 - Documentário e não documentário tem que ter domínios distintos
+- Documentário não pode ter atores
+- Todo filme tem que ser um documentário ou não documentário
 - Apagar em cascata
     Filme
     - Tabelas Ator, Diretor, Roteirista, Produtor, Premio, Melhor Filme, Documentario e Não documentário 
