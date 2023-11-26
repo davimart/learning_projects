@@ -1,0 +1,18 @@
+Restrições
+
+- Valores que não podem ser nulos
+- Anos condizentes
+- Não pode estar concorrendo e ser juri ao mesmo tempo
+- Pessoa concorrendo tem que ser condizente com a categoria e com o filme
+- Ano do filme tem que ser condizente com o ano da edição
+- Documentário e não documentário tem que ter domínios distintos
+- Apagar em cascata
+    Filme
+    - Tabelas Ator, Diretor, Roteirista, Produtor, Premio, Melhor Filme, Documentario e Não documentário 
+    Pessoa
+    - Tabelas Ator, Diretor, Roteirista, Produtor, Premio, Juri
+    Edição
+    -Tabelas Premio, Juri, Melhor filme
+    Evento
+    - Tabela Edição
+
