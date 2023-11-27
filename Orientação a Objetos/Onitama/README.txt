@@ -1,4 +1,4 @@
-Implementação orientada a objetos sem interface gráfica de um gerador de relatórios
+Implementação orientada a objetos sem interface gráfica do jogo Onitama
 
 Colaboradores:
 Davi Martins 
