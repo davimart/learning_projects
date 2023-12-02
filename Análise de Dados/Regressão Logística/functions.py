@@ -2,6 +2,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 
+def dummy_acesso_internet(df):
+    df.rename(columns={'Q025': 'Acesso a Internet'}, inplace=True)
+
+    # Substituir os valores 'A' por 0 e 'B' por 1 
+    df['Acesso a Internet'] = df['Acesso a Internet'].replace({'A': 0, 'B': 1})
+    return df
+
 def dummy_renda_familiar(df):
     #RENDA FAMILIAR
     #Q006 - Qual é a renda mensal de sua família? (Some a sua renda com a dos seus familiares.)

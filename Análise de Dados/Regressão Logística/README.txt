@@ -32,7 +32,7 @@ Variáveis independentes:
 
 2 - Sexo - Masculino/Feminino as dummies
 
-3 - Localização (Escola) - Urbano/Rural
+3 - Localização (Escola) - Urbano/Rural - Não deu para fazer, 70% das observações não tinha esse dado
 
 Creio eu dado da escola que está sendo aplicada a prova
 

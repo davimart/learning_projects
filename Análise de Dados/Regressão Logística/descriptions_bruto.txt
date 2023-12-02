@@ -1,0 +1,112 @@
+Análise da variável 'TP_SEXO':
+TP_SEXO
+F    2120519
+M    1355586
+Name: count, dtype: int64
+
+Análise da variável 'TP_COR_RACA':
+count    3.476105e+06
+mean     2.035284e+00
+std      1.019759e+00
+min      0.000000e+00
+25%      1.000000e+00
+50%      2.000000e+00
+75%      3.000000e+00
+max      5.000000e+00
+Name: TP_COR_RACA, dtype: float64
+
+Análise da variável 'TP_LOCALIZACAO_ESC':
+count    951944.000000
+mean          1.035228
+std           0.184355
+min           1.000000
+25%           1.000000
+50%           1.000000
+75%           1.000000
+max           2.000000
+Name: TP_LOCALIZACAO_ESC, dtype: float64
+
+Análise da variável 'TP_STATUS_REDACAO':
+count    2.493442e+06
+mean     1.188712e+00
+std      8.793775e-01
+min      1.000000e+00
+25%      1.000000e+00
+50%      1.000000e+00
+75%      1.000000e+00
+max      9.000000e+00
+Name: TP_STATUS_REDACAO, dtype: float64
+
+Análise da variável 'Q001':
+Q001
+E    1002676
+B     601131
+C     456924
+D     388901
+H     333549
+F     316880
+G     236316
+A     139728
+Name: count, dtype: int64
+
+Análise da variável 'Q002':
+Q002
+E    1217025
+B     431585
+F     424771
+D     415361
+G     402007
+C     386363
+H     109953
+A      89040
+Name: count, dtype: int64
+
+Análise da variável 'Q006':
+Q006
+B    1022869
+C     584278
+D     414266
+E     276704
+A     204475
+G     194319
+H     188751
+F     158091
+I      78916
+J      54984
+L      51295
+Q      49740
+M      48530
+O      39034
+K      38997
+P      36032
+N      34824
+Name: count, dtype: int64
+
+Análise da variável 'Q025':
+Q025
+B    3149732
+A     326373
+Name: count, dtype: int64
+
+Análise da variável 'NU_NOTA_REDACAO':
+count    2.493442e+06
+mean     6.184797e+02
+std      2.122125e+02
+min      0.000000e+00
+25%      5.200000e+02
+50%      6.200000e+02
+75%      7.600000e+02
+max      1.000000e+03
+Name: NU_NOTA_REDACAO, dtype: float64
+
+Análise da variável 'TP_PRESENCA_LC':
+count    3.476105e+06
+mean     7.200030e-01
+std      4.519873e-01
+min      0.000000e+00
+25%      0.000000e+00
+50%      1.000000e+00
+75%      1.000000e+00
+max      2.000000e+00
+Name: TP_PRESENCA_LC, dtype: float64
+

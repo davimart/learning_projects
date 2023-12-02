@@ -5,10 +5,10 @@ from functions import *
 dataset = 'MICRODADOS_ENEM_2022.csv'
 colunas = ['NU_INSCRICAO','TP_SEXO','TP_COR_RACA',
             'TP_LOCALIZACAO_ESC', 'TP_STATUS_REDACAO',
-            'Q001', 'Q002','Q006','Q025','Q007','NU_NOTA_REDACAO', 'NU_NOTA_MT']
+            'Q001', 'Q002','Q006','Q025','NU_NOTA_REDACAO', 'TP_PRESENCA_LC']
 
 df = pd.read_csv(dataset, sep=';', encoding='ISO-8859-1',usecols=colunas)
-
+#imprimir_resumo(df, colunas)
 for coluna in colunas:
     summary(df,coluna)
 
@@ -28,6 +28,29 @@ df = dummy_escolaridade_parente(df)
 df = dummy_renda_familiar(df)
 
 
+#'Q025' Na sua residência tem acesso à Internet?
+df = dummy_acesso_internet(df)
 
-#print(df)
+#Varíavel dependente/target
+#Bottom 10% + valores nulos - 1 e resto - 0
+
+# Escolha a coluna 'NU_NOTA_REDACAO'
+coluna_notas_redacao = 'NU_NOTA_REDACAO'
+
+# Passo 1: Calcule o 10º percentil
+percentil_10 = df[coluna_notas_redacao].quantile(0.1)
+print('PERCENTIL 10% DE NOTAS DA REDACAÇÃO: ', percentil_10)
+
+# Passo 2: Crie a nova coluna com base nas condições
+df['Performance_Redacao'] = 0  # Inicializa com 0
+df.loc[(df[coluna_notas_redacao].isnull()) | (df[coluna_notas_redacao] <= percentil_10), 'Performance_Redacao'] = 1
+
+# Exibir o DataFrame resultante
+print(df[['NU_NOTA_REDACAO', 'Performance_Redacao']])
+
+print(df)
+
+df.to_csv('MICRODADOS_ENEM_2022_FILTRADOS.csv', index=False)
+colunas = df.columns.tolist()
+imprimir_resumo(df, colunas)
 
