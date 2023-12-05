@@ -3,138 +3,148 @@ Resumo da Regressão para Performance_Redacao:
 
                             Logit Regression Results                           
 ===============================================================================
-Dep. Variable:     Performance_Redacao   No. Observations:              3059007
-Model:                           Logit   Df Residuals:                  3058995
-Method:                            MLE   Df Model:                           11
-Date:                 Mon, 04 Dec 2023   Pseudo R-squ.:                 0.04784
-Time:                         23:38:33   Log-Likelihood:            -1.8831e+06
-converged:                        True   LL-Null:                   -1.9777e+06
+Dep. Variable:     Performance_Redacao   No. Observations:              2089195
+Model:                           Logit   Df Residuals:                  2089181
+Method:                            MLE   Df Model:                           13
+Date:                 Tue, 05 Dec 2023   Pseudo R-squ.:                 0.02974
+Time:                         11:43:37   Log-Likelihood:            -6.6139e+05
+converged:                        True   LL-Null:                   -6.8167e+05
 Covariance Type:             nonrobust   LLR p-value:                     0.000
 =============================================================================================
                                 coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------
-Acesso_Internet              -0.4539      0.003   -151.697      0.000      -0.460      -0.448
-Amarela                       0.0775      0.009      8.555      0.000       0.060       0.095
-Ate_1212                      0.2772      0.003     88.317      0.000       0.271       0.283
-Entre_1212_e_3030             0.2010      0.003     64.181      0.000       0.195       0.207
-Indigena                      0.3473      0.016     22.110      0.000       0.317       0.378
-Mae_Ensino_Medio_Completo    -0.4089      0.003   -138.054      0.000      -0.415      -0.403
-Mae_Ensino_Superior_Mais     -0.7203      0.004   -183.911      0.000      -0.728      -0.713
-Pai_Ensino_Medio_Completo    -0.2752      0.003    -91.277      0.000      -0.281      -0.269
-Pai_Ensino_Superior_Mais     -0.5551      0.004   -124.140      0.000      -0.564      -0.546
-Parda                         0.0865      0.003     31.690      0.000       0.081       0.092
-Preta                         0.1484      0.004     36.538      0.000       0.140       0.156
-Sexo_Masculino                0.1289      0.003     51.340      0.000       0.124       0.134
+Acesso_Internet              -0.9664      0.006   -171.319      0.000      -0.977      -0.955
+Amarela                       0.0103      0.017      0.601      0.548      -0.023       0.044
+Ate_1212                      0.1125      0.007     16.486      0.000       0.099       0.126
+Entre_1212_e_3030            -0.0347      0.007     -5.249      0.000      -0.048      -0.022
+Escola_Publica               -0.6805      0.008    -87.297      0.000      -0.696      -0.665
+Escola_SemResposta           -0.8902      0.007   -123.140      0.000      -0.904      -0.876
+Indigena                      0.3137      0.027     11.573      0.000       0.261       0.367
+Mae_Ensino_Medio_Completo    -0.4676      0.005    -85.883      0.000      -0.478      -0.457
+Mae_Ensino_Superior_Mais     -0.9360      0.008   -119.618      0.000      -0.951      -0.921
+Pai_Ensino_Medio_Completo    -0.3752      0.006    -65.937      0.000      -0.386      -0.364
+Pai_Ensino_Superior_Mais     -0.9696      0.010   -101.741      0.000      -0.988      -0.951
+Parda                         0.0655      0.005     12.599      0.000       0.055       0.076
+Preta                         0.0829      0.008     10.882      0.000       0.068       0.098
+Sexo_Masculino                0.0659      0.005     14.069      0.000       0.057       0.075
 =============================================================================================
 
 Resumo da Regressão para 10Percentil_Redacao:
 
                             Logit Regression Results                           
 ===============================================================================
-Dep. Variable:     10Percentil_Redacao   No. Observations:              3059007
-Model:                           Logit   Df Residuals:                  3058995
-Method:                            MLE   Df Model:                           11
-Date:                 Mon, 04 Dec 2023   Pseudo R-squ.:                -0.02532
-Time:                         23:38:56   Log-Likelihood:            -8.2148e+05
-converged:                        True   LL-Null:                   -8.0120e+05
-Covariance Type:             nonrobust   LLR p-value:                     1.000
+Dep. Variable:     10Percentil_Redacao   No. Observations:              2089195
+Model:                           Logit   Df Residuals:                  2089181
+Method:                            MLE   Df Model:                           13
+Date:                 Tue, 05 Dec 2023   Pseudo R-squ.:                 0.02974
+Time:                         11:43:53   Log-Likelihood:            -6.6139e+05
+converged:                        True   LL-Null:                   -6.8167e+05
+Covariance Type:             nonrobust   LLR p-value:                     0.000
 =============================================================================================
                                 coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------
-Acesso_Internet              -1.3577      0.004   -315.799      0.000      -1.366      -1.349
-Amarela                      -0.2668      0.016    -16.525      0.000      -0.298      -0.235
-Ate_1212                     -0.7362      0.005   -152.434      0.000      -0.746      -0.727
-Entre_1212_e_3030            -0.6616      0.005   -127.875      0.000      -0.672      -0.651
-Indigena                     -0.1838      0.025     -7.323      0.000      -0.233      -0.135
-Mae_Ensino_Medio_Completo    -0.4376      0.005    -86.392      0.000      -0.448      -0.428
-Mae_Ensino_Superior_Mais     -0.9493      0.007   -128.267      0.000      -0.964      -0.935
-Pai_Ensino_Medio_Completo    -0.3901      0.005    -72.660      0.000      -0.401      -0.380
-Pai_Ensino_Superior_Mais     -1.0114      0.009   -111.946      0.000      -1.029      -0.994
-Parda                        -0.2130      0.005    -45.931      0.000      -0.222      -0.204
-Preta                        -0.2258      0.007    -32.147      0.000      -0.240      -0.212
-Sexo_Masculino               -0.1115      0.004    -25.803      0.000      -0.120      -0.103
-=============================================================================================
-
-Resumo da Regressão para Redacao_Nula:
-
-                           Logit Regression Results                           
-==============================================================================
-Dep. Variable:           Redacao_Nula   No. Observations:              3059007
-Model:                          Logit   Df Residuals:                  3058995
-Method:                           MLE   Df Model:                           11
-Date:                Mon, 04 Dec 2023   Pseudo R-squ.:                 0.03001
-Time:                        23:39:16   Log-Likelihood:            -1.7461e+06
-converged:                       True   LL-Null:                   -1.8001e+06
-Covariance Type:            nonrobust   LLR p-value:                     0.000
-=============================================================================================
-                                coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------
-Acesso_Internet              -0.5441      0.003   -176.650      0.000      -0.550      -0.538
-Amarela                       0.0038      0.010      0.395      0.693      -0.015       0.022
-Ate_1212                     -0.0241      0.003     -7.358      0.000      -0.031      -0.018
-Entre_1212_e_3030             0.0384      0.003     11.692      0.000       0.032       0.045
-Indigena                      0.2037      0.016     12.617      0.000       0.172       0.235
-Mae_Ensino_Medio_Completo    -0.4223      0.003   -135.399      0.000      -0.428      -0.416
-Mae_Ensino_Superior_Mais     -0.7512      0.004   -179.305      0.000      -0.759      -0.743
-Pai_Ensino_Medio_Completo    -0.2836      0.003    -88.536      0.000      -0.290      -0.277
-Pai_Ensino_Superior_Mais     -0.5571      0.005   -116.270      0.000      -0.566      -0.548
-Parda                        -0.0039      0.003     -1.366      0.172      -0.010       0.002
-Preta                         0.0788      0.004     18.504      0.000       0.070       0.087
-Sexo_Masculino                0.0607      0.003     22.981      0.000       0.056       0.066
-=============================================================================================
-
-Resumo da Regressão para Redacao_Falta:
-
-                           Logit Regression Results                           
-==============================================================================
-Dep. Variable:          Redacao_Falta   No. Observations:              3059007
-Model:                          Logit   Df Residuals:                  3058995
-Method:                           MLE   Df Model:                           11
-Date:                Mon, 04 Dec 2023   Pseudo R-squ.:                 0.03001
-Time:                        23:39:37   Log-Likelihood:            -1.7461e+06
-converged:                       True   LL-Null:                   -1.8001e+06
-Covariance Type:            nonrobust   LLR p-value:                     0.000
-=============================================================================================
-                                coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------
-Acesso_Internet              -0.5441      0.003   -176.650      0.000      -0.550      -0.538
-Amarela                       0.0038      0.010      0.395      0.693      -0.015       0.022
-Ate_1212                     -0.0241      0.003     -7.358      0.000      -0.031      -0.018
-Entre_1212_e_3030             0.0384      0.003     11.692      0.000       0.032       0.045
-Indigena                      0.2037      0.016     12.617      0.000       0.172       0.235
-Mae_Ensino_Medio_Completo    -0.4223      0.003   -135.399      0.000      -0.428      -0.416
-Mae_Ensino_Superior_Mais     -0.7512      0.004   -179.305      0.000      -0.759      -0.743
-Pai_Ensino_Medio_Completo    -0.2836      0.003    -88.536      0.000      -0.290      -0.277
-Pai_Ensino_Superior_Mais     -0.5571      0.005   -116.270      0.000      -0.566      -0.548
-Parda                        -0.0039      0.003     -1.366      0.172      -0.010       0.002
-Preta                         0.0788      0.004     18.504      0.000       0.070       0.087
-Sexo_Masculino                0.0607      0.003     22.981      0.000       0.056       0.066
+Acesso_Internet              -0.9664      0.006   -171.319      0.000      -0.977      -0.955
+Amarela                       0.0103      0.017      0.601      0.548      -0.023       0.044
+Ate_1212                      0.1125      0.007     16.486      0.000       0.099       0.126
+Entre_1212_e_3030            -0.0347      0.007     -5.249      0.000      -0.048      -0.022
+Escola_Publica               -0.6805      0.008    -87.297      0.000      -0.696      -0.665
+Escola_SemResposta           -0.8902      0.007   -123.140      0.000      -0.904      -0.876
+Indigena                      0.3137      0.027     11.573      0.000       0.261       0.367
+Mae_Ensino_Medio_Completo    -0.4676      0.005    -85.883      0.000      -0.478      -0.457
+Mae_Ensino_Superior_Mais     -0.9360      0.008   -119.618      0.000      -0.951      -0.921
+Pai_Ensino_Medio_Completo    -0.3752      0.006    -65.937      0.000      -0.386      -0.364
+Pai_Ensino_Superior_Mais     -0.9696      0.010   -101.741      0.000      -0.988      -0.951
+Parda                         0.0655      0.005     12.599      0.000       0.055       0.076
+Preta                         0.0829      0.008     10.882      0.000       0.068       0.098
+Sexo_Masculino                0.0659      0.005     14.069      0.000       0.057       0.075
 =============================================================================================
 
 Resumo da Regressão para Problema_Redacao:
 
                            Logit Regression Results                           
 ==============================================================================
-Dep. Variable:       Problema_Redacao   No. Observations:              3059007
-Model:                          Logit   Df Residuals:                  3058995
-Method:                           MLE   Df Model:                           11
-Date:                Mon, 04 Dec 2023   Pseudo R-squ.:                -0.06505
-Time:                        23:40:00   Log-Likelihood:            -4.9419e+05
-converged:                       True   LL-Null:                   -4.6400e+05
+Dep. Variable:       Problema_Redacao   No. Observations:              2089195
+Model:                          Logit   Df Residuals:                  2089181
+Method:                           MLE   Df Model:                           13
+Date:                Tue, 05 Dec 2023   Pseudo R-squ.:               -0.007860
+Time:                        11:45:24   Log-Likelihood:            -3.4837e+05
+converged:                       True   LL-Null:                   -3.4565e+05
 Covariance Type:            nonrobust   LLR p-value:                     1.000
 =============================================================================================
                                 coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------
-Acesso_Internet              -1.7016      0.006   -302.161      0.000      -1.713      -1.691
-Amarela                      -0.4498      0.023    -19.652      0.000      -0.495      -0.405
-Ate_1212                     -1.2191      0.006   -190.296      0.000      -1.232      -1.207
-Entre_1212_e_3030            -1.0390      0.007   -149.118      0.000      -1.053      -1.025
-Indigena                     -0.3480      0.034    -10.182      0.000      -0.415      -0.281
-Mae_Ensino_Medio_Completo    -0.4990      0.007    -71.053      0.000      -0.513      -0.485
-Mae_Ensino_Superior_Mais     -1.0705      0.010   -104.699      0.000      -1.091      -1.050
-Pai_Ensino_Medio_Completo    -0.4523      0.007    -60.389      0.000      -0.467      -0.438
-Pai_Ensino_Superior_Mais     -1.0843      0.012    -87.995      0.000      -1.108      -1.060
-Parda                        -0.3682      0.006    -58.301      0.000      -0.381      -0.356
-Preta                        -0.4630      0.010    -46.165      0.000      -0.483      -0.443
-Sexo_Masculino               -0.1992      0.006    -33.462      0.000      -0.211      -0.188
+Acesso_Internet              -1.2033      0.008   -154.796      0.000      -1.219      -1.188
+Amarela                      -0.1437      0.026     -5.467      0.000      -0.195      -0.092
+Ate_1212                     -0.2265      0.010    -22.769      0.000      -0.246      -0.207
+Entre_1212_e_3030            -0.3454      0.010    -35.362      0.000      -0.365      -0.326
+Escola_Publica               -1.0059      0.011    -93.938      0.000      -1.027      -0.985
+Escola_SemResposta           -1.4298      0.010   -141.961      0.000      -1.450      -1.410
+Indigena                      0.1365      0.040      3.436      0.001       0.059       0.214
+Mae_Ensino_Medio_Completo    -0.5113      0.008    -61.965      0.000      -0.527      -0.495
+Mae_Ensino_Superior_Mais     -1.0694      0.012    -89.053      0.000      -1.093      -1.046
+Pai_Ensino_Medio_Completo    -0.4328      0.009    -49.596      0.000      -0.450      -0.416
+Pai_Ensino_Superior_Mais     -1.0922      0.014    -75.432      0.000      -1.121      -1.064
+Parda                        -0.0372      0.008     -4.807      0.000      -0.052      -0.022
+Preta                        -0.1138      0.012     -9.643      0.000      -0.137      -0.091
+Sexo_Masculino               -0.0165      0.007     -2.353      0.019      -0.030      -0.003
+=============================================================================================
+
+Resumo da Regressão para 25Percentil_Redacao:
+
+                            Logit Regression Results                           
+===============================================================================
+Dep. Variable:     25Percentil_Redacao   No. Observations:              2089195
+Model:                           Logit   Df Residuals:                  2089181
+Method:                            MLE   Df Model:                           13
+Date:                 Tue, 05 Dec 2023   Pseudo R-squ.:                 0.07118
+Time:                         11:45:38   Log-Likelihood:            -1.1277e+06
+converged:                        True   LL-Null:                   -1.2141e+06
+Covariance Type:             nonrobust   LLR p-value:                     0.000
+=============================================================================================
+                                coef    std err          z      P>|z|      [0.025      0.975]
+---------------------------------------------------------------------------------------------
+Acesso_Internet              -0.8598      0.005   -183.303      0.000      -0.869      -0.851
+Amarela                       0.1637      0.012     13.707      0.000       0.140       0.187
+Ate_1212                      0.4285      0.005     89.088      0.000       0.419       0.438
+Entre_1212_e_3030             0.2341      0.005     51.785      0.000       0.225       0.243
+Escola_Publica                0.0235      0.006      3.962      0.000       0.012       0.035
+Escola_SemResposta           -0.1464      0.006    -26.585      0.000      -0.157      -0.136
+Indigena                      0.5933      0.021     27.759      0.000       0.551       0.635
+Mae_Ensino_Medio_Completo    -0.3887      0.004   -100.268      0.000      -0.396      -0.381
+Mae_Ensino_Superior_Mais     -0.7612      0.005   -148.155      0.000      -0.771      -0.751
+Pai_Ensino_Medio_Completo    -0.2844      0.004    -72.807      0.000      -0.292      -0.277
+Pai_Ensino_Superior_Mais     -0.7395      0.006   -123.528      0.000      -0.751      -0.728
+Parda                         0.1687      0.004     46.218      0.000       0.162       0.176
+Preta                         0.2268      0.005     41.948      0.000       0.216       0.237
+Sexo_Masculino                0.2506      0.003     75.457      0.000       0.244       0.257
+=============================================================================================
+
+Resumo da Regressão para 10Percentil_Geral:
+
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:      10Percentil_Geral   No. Observations:              2089195
+Model:                          Logit   Df Residuals:                  2089181
+Method:                           MLE   Df Model:                           13
+Date:                Tue, 05 Dec 2023   Pseudo R-squ.:                 0.06943
+Time:                        11:45:56   Log-Likelihood:            -6.3202e+05
+converged:                       True   LL-Null:                   -6.7917e+05
+Covariance Type:            nonrobust   LLR p-value:                     0.000
+=============================================================================================
+                                coef    std err          z      P>|z|      [0.025      0.975]
+---------------------------------------------------------------------------------------------
+Acesso_Internet              -1.0272      0.006   -183.880      0.000      -1.038      -1.016
+Amarela                       0.1458      0.017      8.511      0.000       0.112       0.179
+Ate_1212                      0.4579      0.007     63.763      0.000       0.444       0.472
+Entre_1212_e_3030             0.0192      0.007      2.669      0.008       0.005       0.033
+Escola_Publica               -0.7445      0.008    -91.835      0.000      -0.760      -0.729
+Escola_SemResposta           -1.1322      0.008   -147.921      0.000      -1.147      -1.117
+Indigena                      0.7641      0.025     30.488      0.000       0.715       0.813
+Mae_Ensino_Medio_Completo    -0.4948      0.006    -89.730      0.000      -0.506      -0.484
+Mae_Ensino_Superior_Mais     -0.9457      0.008   -114.765      0.000      -0.962      -0.930
+Pai_Ensino_Medio_Completo    -0.4244      0.006    -72.712      0.000      -0.436      -0.413
+Pai_Ensino_Superior_Mais     -1.1126      0.011   -105.388      0.000      -1.133      -1.092
+Parda                         0.2247      0.005     41.803      0.000       0.214       0.235
+Preta                         0.2118      0.008     27.374      0.000       0.197       0.227
+Sexo_Masculino               -0.0669      0.005    -13.785      0.000      -0.076      -0.057
 =============================================================================================

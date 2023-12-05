@@ -5,10 +5,21 @@ from functions import *
 dataset = 'MICRODADOS_ENEM_2022.csv'
 colunas = ['NU_INSCRICAO','TP_SEXO','TP_COR_RACA',
             'TP_LOCALIZACAO_ESC', 'TP_STATUS_REDACAO',
-            'Q001', 'Q002','Q006','Q025','NU_NOTA_REDACAO', 'TP_PRESENCA_LC']
+            'Q001', 'Q002','Q006','Q025',
+            'NU_NOTA_REDACAO', 'NU_NOTA_CN', 'NU_NOTA_CH', 'NU_NOTA_LC','NU_NOTA_MT',
+            'TP_PRESENCA_LC', 'TP_ESCOLA',
+            'TP_PRESENCA_CN', 'TP_PRESENCA_CH', 'TP_PRESENCA_LC','TP_PRESENCA_MT']
 
 df = pd.read_csv(dataset, sep=';', encoding='ISO-8859-1',usecols=colunas)
-#imprimir_resumo(df, colunas)
+
+#remover faltantes
+df = df[df['TP_PRESENCA_CN'] == 1]
+df = df[df['TP_PRESENCA_CH'] == 1]
+df = df[df['TP_PRESENCA_LC'] == 1]
+df = df[df['TP_PRESENCA_MT'] == 1]
+
+
+imprimir_resumo(df, colunas, 'bruto')
 for coluna in colunas:
     summary(df,coluna)
 
@@ -31,6 +42,11 @@ df = dummy_renda_familiar(df)
 #'Q025' Na sua residência tem acesso à Internet?
 df = dummy_acesso_internet(df)
 
+
+#TIPO de escola 00 - Privada 10- Não respondeu 01-Pública
+df = dummy_tipo_escola(df)
+
+
 #Varíavel dependente/target
 #Bottom 10% + valores nulos - 1 e resto - 0
 
@@ -39,7 +55,7 @@ coluna_notas_redacao = 'NU_NOTA_REDACAO'
 
 # Passo 1: Calcule o 10º percentil
 percentil_10 = df[coluna_notas_redacao].quantile(0.1)
-print('PERCENTIL 10% DE NOTAS DA REDACAÇÃO: ', percentil_10)
+#print('PERCENTIL 10% DE NOTAS DA REDACAÇÃO: ', percentil_10)
 
 # Passo 2: Crie a nova coluna com base nas condições
 # Nota nula + 10 percentil
@@ -47,8 +63,14 @@ df['Performance_Redacao'] = 0  # Inicializa com 0
 df.loc[(df[coluna_notas_redacao].isnull()) | (df[coluna_notas_redacao] <= percentil_10), 'Performance_Redacao'] = 1
 
 #10percentil
+percentil = df[coluna_notas_redacao].quantile(0.1)
 df['10Percentil_Redacao'] = 0  # Inicializa com 0
-df.loc[(df[coluna_notas_redacao] <= percentil_10), '10Percentil_Redacao'] = 1
+df.loc[(df[coluna_notas_redacao] <= percentil), '10Percentil_Redacao'] = 1
+
+#25percentil
+percentil = df[coluna_notas_redacao].quantile(0.25)
+df['25Percentil_Redacao'] = 0  # Inicializa com 0
+df.loc[(df[coluna_notas_redacao] <= percentil), '25Percentil_Redacao'] = 1
 
 #nota nula
 df['Redacao_Nula'] = 0  # Inicializa com 0
@@ -63,12 +85,19 @@ df['Problema_Redacao'] = 0  # Inicializa com 0
 df.loc[(df['TP_STATUS_REDACAO'] != 1) & (~df['TP_STATUS_REDACAO'].isnull()), 'Problema_Redacao'] = 1
 
 
-# Exibir o DataFrame resultante
-print(df[['NU_NOTA_REDACAO', 'Performance_Redacao']])
+#Performance geral - bottom 10%
+df['Nota_Geral'] = df[['NU_NOTA_REDACAO', 'NU_NOTA_CN', 'NU_NOTA_CH', 'NU_NOTA_LC','NU_NOTA_MT']].sum(axis=1, skipna=True)
 
-print(df)
+percentil = df['Nota_Geral'].quantile(0.1)
+df['10Percentil_Geral'] = 0  # Inicializa com 0
+df.loc[(df['Nota_Geral'] <= percentil), '10Percentil_Geral'] = 1
+
+# Exibir o DataFrame resultante
+#print(df[['NU_NOTA_REDACAO', 'Performance_Redacao']])
+
+#print(df)
 
 df.to_csv('MICRODADOS_ENEM_2022_FILTRADOS.csv', index=False, sep=';')
 colunas = df.columns.tolist()
-#imprimir_resumo(df, colunas)
+imprimir_resumo(df, colunas, 'filtrado')
 

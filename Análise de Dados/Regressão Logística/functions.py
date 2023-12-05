@@ -2,6 +2,20 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 
+
+def dummy_tipo_escola(df):
+    # INICIALIZAR COM ZERO!!!
+    df['Escola_SemResposta'] = 0 
+    df['Escola_Publica'] = 0
+
+    df['Escola_SemResposta'] = df['TP_ESCOLA'].eq(1).astype(int) 
+    df['Escola_Publica'] = df['TP_ESCOLA'].eq(2).astype(int)
+
+    print(df[['TP_ESCOLA', 'Escola_SemResposta','Escola_Publica']])
+    
+    df = df.drop('TP_ESCOLA', axis=1)
+    return df
+
 def dummy_acesso_internet(df):
     df.rename(columns={'Q025': 'Acesso_Internet'}, inplace=True)
 
@@ -22,6 +36,10 @@ def dummy_renda_familiar(df):
     #F+
     #De R$ 3.030,01 até máximo
 
+    # INICIALIZAR COM ZERO!!!
+    df['Ate_1212'] = 0
+    df['Entre_1212_e_3030'] = 0
+    
     df['Ate_1212'] = df['Q006'].isin(['A', 'B']).astype(int)
     df['Entre_1212_e_3030'] = df['Q006'].isin(['C','D','E']).astype(int)         
     #Para além de 3.030,00 não precisa pq se for 0 nas duas primeiras é para além
@@ -55,7 +73,14 @@ def dummy_escolaridade_parente(df):
         
         if parente == 'Q002':
             nome = 'Mae_'
+        
         #df['Q001_A_D'] = df['Q001'].isin(['A', 'B', 'C', 'D']).astype(int) -- não precisa se não tem EM completo ou superior, é abaixo
+        # INICIALIZAR COM ZERO!!!
+        aux = nome + 'Ensino_Medio_Completo'
+        df[aux] = 0
+        aux = nome + 'Ensino_Superior_Mais'
+        df[aux] = 0
+
         aux = nome + 'Ensino_Medio_Completo'
         df[aux] = df[parente].eq('E').astype(int)
         aux = nome + 'Ensino_Superior_Mais'
@@ -130,16 +155,14 @@ def summary(df,nome_coluna):
     print(df[nome_coluna].describe())
 
 
-
-
-def imprimir_resumo(df, columns):
+def imprimir_resumo(df, columns, nome_arquivo):
     # Create a directory to store the exported plots (if it doesn't exist)
-    output_dir = 'Imagens'
+    output_dir = 'Imagens_' + nome_arquivo
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
     # Create a text file to save the descriptions
-    with open('descriptions.txt', 'w') as description_file:
+    with open('description_' + nome_arquivo + '.txt', 'w') as description_file:
         for column in columns:
             if column != 'NU_INSCRICAO':
                 # Verificar o tipo de variável (numérica ou categórica)
@@ -161,11 +184,19 @@ def imprimir_resumo(df, columns):
                     description_file.write(f"Análise da variável '{column}':\n")
                     description_file.write(str(df[column].value_counts()))  # Tabela de distribuição de frequências
                     description_file.write('\n\n')
+                    
+                    # Calcular e imprimir as porcentagens
+                    percentages = df[column].value_counts(normalize=True) * 100
+                    description_file.write(f"Porcentagens da variável '{column}':\n")
+                    description_file.write(str(percentages))
+                    description_file.write('\n\n')
+                    
                     df[column].value_counts().plot(kind='bar', title=f'Distribuição de Frequências - {column}')
                     plt.xlabel(column)
                     plt.savefig(os.path.join(output_dir, f'bar_{column}.png'))  # Save the plot
                     plt.close()  # Close the current plot
                 else:
                     print(f"A variável '{column}' não é numérica nem categórica e não pode ser analisada automaticamente.")
+
 
 

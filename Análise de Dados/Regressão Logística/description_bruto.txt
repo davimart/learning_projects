@@ -1,0 +1,268 @@
+Análise da variável 'TP_SEXO':
+TP_SEXO
+F    1436668
+M     908155
+Name: count, dtype: int64
+
+Porcentagens da variável 'TP_SEXO':
+TP_SEXO
+F    61.269785
+M    38.730215
+Name: proportion, dtype: float64
+
+Análise da variável 'TP_COR_RACA':
+count    2.344823e+06
+mean     1.991332e+00
+std      1.018477e+00
+min      0.000000e+00
+25%      1.000000e+00
+50%      2.000000e+00
+75%      3.000000e+00
+max      5.000000e+00
+Name: TP_COR_RACA, dtype: float64
+
+Análise da variável 'TP_LOCALIZACAO_ESC':
+count    692915.000000
+mean          1.032321
+std           0.176852
+min           1.000000
+25%           1.000000
+50%           1.000000
+75%           1.000000
+max           2.000000
+Name: TP_LOCALIZACAO_ESC, dtype: float64
+
+Análise da variável 'TP_STATUS_REDACAO':
+count    2.344823e+06
+mean     1.153594e+00
+std      8.004011e-01
+min      1.000000e+00
+25%      1.000000e+00
+50%      1.000000e+00
+75%      1.000000e+00
+max      9.000000e+00
+Name: TP_STATUS_REDACAO, dtype: float64
+
+Análise da variável 'Q001':
+Q001
+E    720913
+B    350284
+C    291859
+D    259673
+F    250540
+H    202637
+G    193050
+A     75867
+Name: count, dtype: int64
+
+Porcentagens da variável 'Q001':
+Q001
+E    30.744879
+B    14.938612
+C    12.446952
+D    11.074311
+F    10.684815
+H     8.641889
+G     8.233031
+A     3.235511
+Name: proportion, dtype: float64
+
+Análise da variável 'Q002':
+Q002
+E    851162
+F    329384
+G    322603
+D    262334
+B    238683
+C    232165
+H     62486
+A     46006
+Name: count, dtype: int64
+
+Porcentagens da variável 'Q002':
+Q002
+E    36.299627
+F    14.047286
+G    13.758096
+D    11.187795
+B    10.179148
+C     9.901174
+H     2.664849
+A     1.962024
+Name: proportion, dtype: float64
+
+Análise da variável 'Q006':
+Q006
+B    630492
+C    369704
+D    276804
+E    194527
+H    145866
+G    145812
+A    119268
+F    115203
+I     62344
+J     44115
+L     41407
+M     39300
+Q     39060
+O     31826
+K     31448
+P     29282
+N     28365
+Name: count, dtype: int64
+
+Porcentagens da variável 'Q006':
+Q006
+B    26.888682
+C    15.766819
+D    11.804900
+E     8.296021
+H     6.220768
+G     6.218465
+A     5.086439
+F     4.913079
+I     2.658793
+J     1.881379
+L     1.765890
+M     1.676033
+Q     1.665797
+O     1.357288
+K     1.341167
+P     1.248794
+N     1.209686
+Name: proportion, dtype: float64
+
+Análise da variável 'Q025':
+Q025
+B    2156270
+A     188553
+Name: count, dtype: int64
+
+Porcentagens da variável 'Q025':
+Q025
+B    91.958753
+A     8.041247
+Name: proportion, dtype: float64
+
+Análise da variável 'NU_NOTA_REDACAO':
+count    2.344823e+06
+mean     6.289500e+02
+std      2.041306e+02
+min      0.000000e+00
+25%      5.400000e+02
+50%      6.400000e+02
+75%      7.800000e+02
+max      1.000000e+03
+Name: NU_NOTA_REDACAO, dtype: float64
+
+Análise da variável 'NU_NOTA_CN':
+count    2.344823e+06
+mean     4.960168e+02
+std      7.193962e+01
+min      0.000000e+00
+25%      4.406000e+02
+50%      4.857000e+02
+75%      5.434000e+02
+max      8.753000e+02
+Name: NU_NOTA_CN, dtype: float64
+
+Análise da variável 'NU_NOTA_CH':
+count    2.344823e+06
+mean     5.299687e+02
+std      7.962069e+01
+min      0.000000e+00
+25%      4.802000e+02
+50%      5.326000e+02
+75%      5.841000e+02
+max      8.392000e+02
+Name: NU_NOTA_CH, dtype: float64
+
+Análise da variável 'NU_NOTA_LC':
+count    2.344823e+06
+mean     5.198768e+02
+std      7.621886e+01
+min      0.000000e+00
+25%      4.714000e+02
+50%      5.278000e+02
+75%      5.749000e+02
+max      8.010000e+02
+Name: NU_NOTA_LC, dtype: float64
+
+Análise da variável 'NU_NOTA_MT':
+count    2.344823e+06
+mean     5.426112e+02
+std      1.159577e+02
+min      0.000000e+00
+25%      4.491000e+02
+50%      5.310000e+02
+75%      6.225000e+02
+max      9.857000e+02
+Name: NU_NOTA_MT, dtype: float64
+
+Análise da variável 'TP_PRESENCA_LC':
+count    2344823.0
+mean           1.0
+std            0.0
+min            1.0
+25%            1.0
+50%            1.0
+75%            1.0
+max            1.0
+Name: TP_PRESENCA_LC, dtype: float64
+
+Análise da variável 'TP_ESCOLA':
+count    2.344823e+06
+mean     1.492408e+00
+std      6.464273e-01
+min      1.000000e+00
+25%      1.000000e+00
+50%      1.000000e+00
+75%      2.000000e+00
+max      3.000000e+00
+Name: TP_ESCOLA, dtype: float64
+
+Análise da variável 'TP_PRESENCA_CN':
+count    2344823.0
+mean           1.0
+std            0.0
+min            1.0
+25%            1.0
+50%            1.0
+75%            1.0
+max            1.0
+Name: TP_PRESENCA_CN, dtype: float64
+
+Análise da variável 'TP_PRESENCA_CH':
+count    2344823.0
+mean           1.0
+std            0.0
+min            1.0
+25%            1.0
+50%            1.0
+75%            1.0
+max            1.0
+Name: TP_PRESENCA_CH, dtype: float64
+
+Análise da variável 'TP_PRESENCA_LC':
+count    2344823.0
+mean           1.0
+std            0.0
+min            1.0
+25%            1.0
+50%            1.0
+75%            1.0
+max            1.0
+Name: TP_PRESENCA_LC, dtype: float64
+
+Análise da variável 'TP_PRESENCA_MT':
+count    2344823.0
+mean           1.0
+std            0.0
+min            1.0
+25%            1.0
+50%            1.0
+75%            1.0
+max            1.0
+Name: TP_PRESENCA_MT, dtype: float64
+
