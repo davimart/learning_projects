@@ -3,10 +3,10 @@ import matplotlib.pyplot as plt
 import os
 
 def dummy_acesso_internet(df):
-    df.rename(columns={'Q025': 'Acesso a Internet'}, inplace=True)
+    df.rename(columns={'Q025': 'Acesso_Internet'}, inplace=True)
 
     # Substituir os valores 'A' por 0 e 'B' por 1 
-    df['Acesso a Internet'] = df['Acesso a Internet'].replace({'A': 0, 'B': 1})
+    df['Acesso_Internet'] = df['Acesso_Internet'].replace({'A': 0, 'B': 1})
     return df
 
 def dummy_renda_familiar(df):
@@ -22,8 +22,8 @@ def dummy_renda_familiar(df):
     #F+
     #De R$ 3.030,01 até máximo
 
-    df['Até 1.212,00'] = df['Q006'].isin(['A', 'B']).astype(int)
-    df['Entre 1.212,00 e 3.030,00'] = df['Q006'].isin(['C','D','E']).astype(int)         
+    df['Ate_1212'] = df['Q006'].isin(['A', 'B']).astype(int)
+    df['Entre_1212_e_3030'] = df['Q006'].isin(['C','D','E']).astype(int)         
     #Para além de 3.030,00 não precisa pq se for 0 nas duas primeiras é para além
 
     df = df.drop('Q006', axis=1)
@@ -51,14 +51,14 @@ def dummy_escolaridade_parente(df):
         # Criar colunas separadas para os grupos
 
         if parente == 'Q001':
-            nome = 'Pai - '
+            nome = 'Pai_'
         
         if parente == 'Q002':
-            nome = 'Mãe - '
+            nome = 'Mae_'
         #df['Q001_A_D'] = df['Q001'].isin(['A', 'B', 'C', 'D']).astype(int) -- não precisa se não tem EM completo ou superior, é abaixo
-        aux = nome + 'Ensino Médio Completo'
+        aux = nome + 'Ensino_Medio_Completo'
         df[aux] = df[parente].eq('E').astype(int)
-        aux = nome + 'Ensino Superior +'
+        aux = nome + 'Ensino_Superior_Mais'
         df[aux] = df[parente].isin(['F', 'G']).astype(int)        
         
         # Remover a coluna original 'Q001' e 'Q002'
@@ -108,8 +108,8 @@ def dummy_raca(df):
     df['Parda'] = df['Parda'].astype(int)
     df.rename(columns={4: 'Amarela'}, inplace=True)
     df['Amarela'] = df['Amarela'].astype(int)
-    df.rename(columns={5: 'Indígena'}, inplace=True)
-    df['Indígena'] = df['Indígena'].astype(int)
+    df.rename(columns={5: 'Indigena'}, inplace=True)
+    df['Indigena'] = df['Indigena'].astype(int)
 
     # Remover a variável categórica original se necessário
     df = df.drop('TP_COR_RACA', axis=1)

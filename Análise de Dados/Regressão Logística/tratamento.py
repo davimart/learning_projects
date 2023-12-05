@@ -42,15 +42,33 @@ percentil_10 = df[coluna_notas_redacao].quantile(0.1)
 print('PERCENTIL 10% DE NOTAS DA REDACAÇÃO: ', percentil_10)
 
 # Passo 2: Crie a nova coluna com base nas condições
+# Nota nula + 10 percentil
 df['Performance_Redacao'] = 0  # Inicializa com 0
 df.loc[(df[coluna_notas_redacao].isnull()) | (df[coluna_notas_redacao] <= percentil_10), 'Performance_Redacao'] = 1
+
+#10percentil
+df['10Percentil_Redacao'] = 0  # Inicializa com 0
+df.loc[(df[coluna_notas_redacao] <= percentil_10), '10Percentil_Redacao'] = 1
+
+#nota nula
+df['Redacao_Nula'] = 0  # Inicializa com 0
+df.loc[(df[coluna_notas_redacao].isnull()), 'Redacao_Nula'] = 1
+
+#falta ou eliminado
+df['Redacao_Falta'] = 0  # Inicializa com 0
+df.loc[(df['TP_PRESENCA_LC'] == 0) | (df['TP_PRESENCA_LC'] == 2), 'Redacao_Falta'] = 1
+
+#redacao com problema
+df['Problema_Redacao'] = 0  # Inicializa com 0
+df.loc[(df['TP_STATUS_REDACAO'] != 1) & (~df['TP_STATUS_REDACAO'].isnull()), 'Problema_Redacao'] = 1
+
 
 # Exibir o DataFrame resultante
 print(df[['NU_NOTA_REDACAO', 'Performance_Redacao']])
 
 print(df)
 
-df.to_csv('MICRODADOS_ENEM_2022_FILTRADOS.csv', index=False)
+df.to_csv('MICRODADOS_ENEM_2022_FILTRADOS.csv', index=False, sep=';')
 colunas = df.columns.tolist()
-imprimir_resumo(df, colunas)
+#imprimir_resumo(df, colunas)
 
