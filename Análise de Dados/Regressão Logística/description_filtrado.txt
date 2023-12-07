@@ -1,112 +1,19 @@
-Análise da variável 'TP_LOCALIZACAO_ESC':
-count    609223.000000
-mean          1.031698
-std           0.175194
-min           1.000000
-25%           1.000000
-50%           1.000000
-75%           1.000000
-max           2.000000
-Name: TP_LOCALIZACAO_ESC, dtype: float64
-
-Análise da variável 'TP_PRESENCA_CN':
-count    2089195.0
-mean           1.0
-std            0.0
-min            1.0
-25%            1.0
-50%            1.0
-75%            1.0
-max            1.0
-Name: TP_PRESENCA_CN, dtype: float64
-
-Análise da variável 'TP_PRESENCA_CH':
-count    2089195.0
-mean           1.0
-std            0.0
-min            1.0
-25%            1.0
-50%            1.0
-75%            1.0
-max            1.0
-Name: TP_PRESENCA_CH, dtype: float64
-
-Análise da variável 'TP_PRESENCA_LC':
-count    2089195.0
-mean           1.0
-std            0.0
-min            1.0
-25%            1.0
-50%            1.0
-75%            1.0
-max            1.0
-Name: TP_PRESENCA_LC, dtype: float64
-
-Análise da variável 'TP_PRESENCA_MT':
-count    2089195.0
-mean           1.0
-std            0.0
-min            1.0
-25%            1.0
-50%            1.0
-75%            1.0
-max            1.0
-Name: TP_PRESENCA_MT, dtype: float64
-
-Análise da variável 'NU_NOTA_CN':
+Análise da variável 'Percentil_Linguagens':
 count    2.089195e+06
-mean     4.979664e+02
-std      7.248103e+01
+mean     1.001266e-01
+std      3.001688e-01
 min      0.000000e+00
-25%      4.421000e+02
-50%      4.878000e+02
-75%      5.461000e+02
-max      8.753000e+02
-Name: NU_NOTA_CN, dtype: float64
+25%      0.000000e+00
+50%      0.000000e+00
+75%      0.000000e+00
+max      1.000000e+00
+Name: Percentil_Linguagens, dtype: float64
 
-Análise da variável 'NU_NOTA_CH':
-count    2.089195e+06
-mean     5.321925e+02
-std      7.960057e+01
-min      0.000000e+00
-25%      4.823000e+02
-50%      5.350000e+02
-75%      5.864000e+02
-max      8.392000e+02
-Name: NU_NOTA_CH, dtype: float64
-
-Análise da variável 'NU_NOTA_LC':
-count    2.089195e+06
-mean     5.219569e+02
-std      7.596261e+01
-min      0.000000e+00
-25%      4.740000e+02
-50%      5.299000e+02
-75%      5.767000e+02
-max      8.010000e+02
-Name: NU_NOTA_LC, dtype: float64
-
-Análise da variável 'NU_NOTA_MT':
-count    2.089195e+06
-mean     5.462086e+02
-std      1.167942e+02
-min      0.000000e+00
-25%      4.519000e+02
-50%      5.356000e+02
-75%      6.268000e+02
-max      9.857000e+02
-Name: NU_NOTA_MT, dtype: float64
-
-Análise da variável 'TP_STATUS_REDACAO':
-count    2.089195e+06
-mean     1.142693e+00
-std      7.733499e-01
-min      1.000000e+00
-25%      1.000000e+00
-50%      1.000000e+00
-75%      1.000000e+00
-max      9.000000e+00
-Name: TP_STATUS_REDACAO, dtype: float64
+Porcentagens da variável 'Percentil_Linguagens':
+Percentil_Linguagens
+0    89.98734
+1    10.01266
+Name: proportion, dtype: float64
 
 Análise da variável 'NU_NOTA_REDACAO':
 count    2.089195e+06
@@ -119,6 +26,60 @@ min      0.000000e+00
 max      1.000000e+03
 Name: NU_NOTA_REDACAO, dtype: float64
 
+Porcentagens da variável 'NU_NOTA_REDACAO':
+NU_NOTA_REDACAO
+600.0     5.732112
+560.0     5.487664
+580.0     5.168546
+640.0     4.710570
+620.0     4.546632
+680.0     4.050747
+540.0     4.000057
+0.0       3.921654
+520.0     3.720668
+660.0     3.650688
+720.0     3.627857
+760.0     3.369049
+880.0     3.263745
+840.0     3.241679
+700.0     3.227942
+800.0     3.225118
+740.0     2.927874
+900.0     2.832766
+920.0     2.818981
+860.0     2.764510
+780.0     2.717171
+820.0     2.711331
+480.0     2.451183
+500.0     2.430649
+940.0     1.899296
+460.0     1.625315
+360.0     1.598128
+440.0     1.552273
+400.0     1.043273
+960.0     0.963194
+420.0     0.952759
+340.0     0.944383
+380.0     0.801601
+320.0     0.771110
+300.0     0.386082
+280.0     0.300738
+980.0     0.273502
+260.0     0.131295
+240.0     0.085823
+220.0     0.026948
+200.0     0.018045
+160.0     0.006127
+180.0     0.005600
+120.0     0.003351
+40.0      0.003255
+80.0      0.002728
+140.0     0.001915
+1000.0    0.001436
+60.0      0.001340
+100.0     0.001292
+Name: proportion, dtype: float64
+
 Análise da variável 'Acesso_Internet':
 count    2.089195e+06
 mean     9.234174e-01
@@ -130,91 +91,9 @@ min      0.000000e+00
 max      1.000000e+00
 Name: Acesso_Internet, dtype: float64
 
-Análise da variável 'Performance_Redacao':
-count    2.089195e+06
-mean     1.005469e-01
-std      3.007278e-01
-min      0.000000e+00
-25%      0.000000e+00
-50%      0.000000e+00
-75%      0.000000e+00
-max      1.000000e+00
-Name: Performance_Redacao, dtype: float64
-
-Análise da variável '10Percentil_Redacao':
-count    2.089195e+06
-mean     1.005469e-01
-std      3.007278e-01
-min      0.000000e+00
-25%      0.000000e+00
-50%      0.000000e+00
-75%      0.000000e+00
-max      1.000000e+00
-Name: 10Percentil_Redacao, dtype: float64
-
-Análise da variável '25Percentil_Redacao':
-count    2.089195e+06
-mean     2.678759e-01
-std      4.428527e-01
-min      0.000000e+00
-25%      0.000000e+00
-50%      0.000000e+00
-75%      1.000000e+00
-max      1.000000e+00
-Name: 25Percentil_Redacao, dtype: float64
-
-Análise da variável 'Redacao_Nula':
-count    2089195.0
-mean           0.0
-std            0.0
-min            0.0
-25%            0.0
-50%            0.0
-75%            0.0
-max            0.0
-Name: Redacao_Nula, dtype: float64
-
-Análise da variável 'Redacao_Falta':
-count    2089195.0
-mean           0.0
-std            0.0
-min            0.0
-25%            0.0
-50%            0.0
-75%            0.0
-max            0.0
-Name: Redacao_Falta, dtype: float64
-
-Análise da variável 'Problema_Redacao':
-count    2.089195e+06
-mean     3.921654e-02
-std      1.941098e-01
-min      0.000000e+00
-25%      0.000000e+00
-50%      0.000000e+00
-75%      0.000000e+00
-max      1.000000e+00
-Name: Problema_Redacao, dtype: float64
-
-Análise da variável 'Nota_Geral':
-count    2.089195e+06
-mean     2.734068e+03
-std      4.399522e+02
-min      0.000000e+00
-25%      2.437900e+03
-50%      2.720100e+03
-75%      3.028600e+03
-max      4.279900e+03
-Name: Nota_Geral, dtype: float64
-
-Análise da variável '10Percentil_Geral':
-count    2.089195e+06
-mean     1.000026e-01
-std      3.000036e-01
-min      0.000000e+00
-25%      0.000000e+00
-50%      0.000000e+00
-75%      0.000000e+00
-max      1.000000e+00
-Name: 10Percentil_Geral, dtype: float64
+Porcentagens da variável 'Acesso_Internet':
+Acesso_Internet
+1    92.341739
+0     7.658261
+Name: proportion, dtype: float64
 

@@ -10,13 +10,13 @@ import statsmodels.api as sm
 # df = ...
 
 dataset = 'MICRODADOS_ENEM_2022_FILTRADOS.csv'
-colunas = ['Acesso_Internet', 'Sexo_Masculino',
+colunas = ['NU_NOTA_REDACAO','Acesso_Internet', 'Sexo_Masculino',
             'Preta', 'Parda', 'Amarela', 'Indigena', 
             'Pai_Ensino_Medio_Completo', 'Pai_Ensino_Superior_Mais', 
             'Mae_Ensino_Medio_Completo', 'Mae_Ensino_Superior_Mais', 
             'Ate_1212', 'Entre_1212_e_3030', 'Escola_SemResposta', 'Escola_Publica',
             'Performance_Redacao', '10Percentil_Redacao', 'Redacao_Nula', 'Redacao_Falta', 
-            'Problema_Redacao', '25Percentil_Redacao', '10Percentil_Geral']
+            'Problema_Redacao', '25Percentil_Redacao', '10Percentil_Geral','Percentil_Linguagens']
 
 
 df = pd.read_csv(dataset, sep=';', encoding='ISO-8859-1', usecols=colunas)
@@ -26,7 +26,8 @@ df['constante'] = 1
 
 # Escolha a coluna de destino (variável dependente) e as colunas de recursos (variáveis independentes)
 colunas_alvo = ['Performance_Redacao', '10Percentil_Redacao', 
-                'Redacao_Nula', 'Redacao_Falta', 'Problema_Redacao', '25Percentil_Redacao','10Percentil_Geral']
+                'Redacao_Nula', 'Redacao_Falta', 'Problema_Redacao', '25Percentil_Redacao',
+                '10Percentil_Geral','Percentil_Linguagens']
 #colunas_recursos = df.columns.difference([colunas_alvo])
 #colunas_recursos = colunas - colunas_alvo
 
@@ -39,22 +40,23 @@ nome_arquivo = 'resumo_modelo.txt'
 with open(nome_arquivo, 'w') as arquivo:
 
     for coluna_alvo in colunas_alvo:
-        try:
-            # Criar um modelo de regressão logística usando StatsModels
-            modelo_statsmodels = sm.Logit(df[coluna_alvo], df[colunas_recursos])
+        if coluna_alvo == 'Percentil_Linguagens':
+            try:
+                # Criar um modelo de regressão logística usando StatsModels
+                modelo_statsmodels = sm.Logit(df[coluna_alvo], df[colunas_recursos])
 
-            # Ajustar o modelo aos dados
-            resultado_statsmodels = modelo_statsmodels.fit()
+                # Ajustar o modelo aos dados
+                resultado_statsmodels = modelo_statsmodels.fit()
 
-            # Exibir um resumo do modelo
-            #print(resultado_statsmodels.summary())
+                # Exibir um resumo do modelo
+                #print(resultado_statsmodels.summary())
+                
+                # Redirecionar a saída do resumo para o arquivo
+                print(f'\nResumo da Regressão para {coluna_alvo}:\n', file=arquivo)
+                print(resultado_statsmodels.summary(), file=arquivo)
             
-            # Redirecionar a saída do resumo para o arquivo
-            print(f'\nResumo da Regressão para {coluna_alvo}:\n', file=arquivo)
-            print(resultado_statsmodels.summary(), file=arquivo)
-        
-        except:
-            print("Erro na coluna: ", coluna_alvo)
+            except:
+                print("Erro na coluna: ", coluna_alvo)
 
 print(f'Resumo da Regressão para todas as colunas alvo salvo em {nome_arquivo}')
 

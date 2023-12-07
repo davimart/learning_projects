@@ -13,7 +13,7 @@ def dummy_tipo_escola(df):
 
     print(df[['TP_ESCOLA', 'Escola_SemResposta','Escola_Publica']])
     
-    df = df.drop('TP_ESCOLA', axis=1)
+    #df = df.drop('TP_ESCOLA', axis=1)
     return df
 
 def dummy_acesso_internet(df):
@@ -44,7 +44,7 @@ def dummy_renda_familiar(df):
     df['Entre_1212_e_3030'] = df['Q006'].isin(['C','D','E']).astype(int)         
     #Para além de 3.030,00 não precisa pq se for 0 nas duas primeiras é para além
 
-    df = df.drop('Q006', axis=1)
+    #df = df.drop('Q006', axis=1)
     return df
 
 def dummy_escolaridade_parente(df):
@@ -87,7 +87,7 @@ def dummy_escolaridade_parente(df):
         df[aux] = df[parente].isin(['F', 'G']).astype(int)        
         
         # Remover a coluna original 'Q001' e 'Q002'
-        df = df.drop(parente, axis=1)
+        #df = df.drop(parente, axis=1)
         
     return df
 
@@ -107,7 +107,7 @@ def dummy_sexo(df):
 
     #print(df)
     # Remover a variável categórica original se necessário
-    df = df.drop('TP_SEXO', axis=1)
+    #df = df.drop('TP_SEXO', axis=1)
     return df
 
 
@@ -137,7 +137,7 @@ def dummy_raca(df):
     df['Indigena'] = df['Indigena'].astype(int)
 
     # Remover a variável categórica original se necessário
-    df = df.drop('TP_COR_RACA', axis=1)
+    #df = df.drop('TP_COR_RACA', axis=1)
     return df
 
 def summary(df,nome_coluna):
@@ -153,7 +153,7 @@ def summary(df,nome_coluna):
     print('Porcentagem nula: ', porcentagem_faltando)
 
     print(df[nome_coluna].describe())
-
+  
 
 def imprimir_resumo(df, columns, nome_arquivo):
     # Create a directory to store the exported plots (if it doesn't exist)
@@ -171,13 +171,27 @@ def imprimir_resumo(df, columns, nome_arquivo):
                     description_file.write(f"Análise da variável '{column}':\n")
                     description_file.write(str(df[column].describe()))  # Medidas de tendência central e dispersão
                     description_file.write('\n\n')
+                    
+                    # Calcular e imprimir as porcentagens
+                    percentages = df[column].value_counts(normalize=True) * 100
+                    description_file.write(f"Porcentagens da variável '{column}':\n")
+                    description_file.write(str(percentages))
+                    description_file.write('\n\n')
+                    
+                    # Plotar gráfico de barras para as porcentagens
+                    plt.figure(figsize=(8, 6))
+                    percentages.plot(kind='bar', title=f'Porcentagens - {column}')
+                    plt.xlabel(column)
+                    plt.ylabel('Porcentagem')
+                    plt.xticks(rotation=45, ha='right')
+                    plt.tight_layout()
+                    plt.savefig(os.path.join(output_dir, f'bar_percentage_{column}.png'))  # Save the plot
+                    plt.close()  # Close the current plot
+                    
+                    # Plotar histograma
                     df[column].plot(kind='hist', bins=10, title=f'Distribuição de Frequências - {column}')
                     plt.xlabel(column)
                     plt.savefig(os.path.join(output_dir, f'hist_{column}.png'))  # Save the plot
-                    plt.close()  # Close the current plot
-                    df.boxplot(column=column, vert=False)
-                    plt.title(f'Box Plot - {column}')
-                    plt.savefig(os.path.join(output_dir, f'boxplot_{column}.png'))  # Save the plot
                     plt.close()  # Close the current plot
                 elif df[column].dtype == 'object':
                     # Análise para variáveis categóricas
@@ -191,12 +205,24 @@ def imprimir_resumo(df, columns, nome_arquivo):
                     description_file.write(str(percentages))
                     description_file.write('\n\n')
                     
+                    # Plotar gráfico de barras para as porcentagens
+                    plt.figure(figsize=(8, 6))
+                    percentages.plot(kind='bar', title=f'Porcentagens - {column}')
+                    plt.xlabel(column)
+                    plt.ylabel('Porcentagem')
+                    plt.xticks(rotation=45, ha='right')
+                    plt.tight_layout()
+                    plt.savefig(os.path.join(output_dir, f'bar_percentage_{column}.png'))  # Save the plot
+                    plt.close()  # Close the current plot
+                    
+                    # Plotar gráfico de barras para a distribuição
                     df[column].value_counts().plot(kind='bar', title=f'Distribuição de Frequências - {column}')
                     plt.xlabel(column)
                     plt.savefig(os.path.join(output_dir, f'bar_{column}.png'))  # Save the plot
                     plt.close()  # Close the current plot
                 else:
                     print(f"A variável '{column}' não é numérica nem categórica e não pode ser analisada automaticamente.")
+
 
 
 

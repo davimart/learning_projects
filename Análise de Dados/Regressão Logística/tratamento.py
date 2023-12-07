@@ -19,7 +19,7 @@ df = df[df['TP_PRESENCA_LC'] == 1]
 df = df[df['TP_PRESENCA_MT'] == 1]
 
 
-imprimir_resumo(df, colunas, 'bruto')
+#imprimir_resumo(df, colunas, 'bruto')
 for coluna in colunas:
     summary(df,coluna)
 
@@ -92,6 +92,16 @@ percentil = df['Nota_Geral'].quantile(0.1)
 df['10Percentil_Geral'] = 0  # Inicializa com 0
 df.loc[(df['Nota_Geral'] <= percentil), '10Percentil_Geral'] = 1
 
+#linguagens - bottom 10%
+percentil = df['NU_NOTA_LC'].quantile(0.9)
+df['Percentil_Linguagens'] = 0  # Inicializa com 0
+df.loc[(df['NU_NOTA_LC'] <= percentil), 'Percentil_Linguagens'] = 1
+
+
+percentil = df['NU_NOTA_REDACAO'].quantile(0.9)
+df['Percentil_Redacao'] = 0  # Inicializa com 0
+df.loc[(df['NU_NOTA_REDACAO'] <= percentil), 'Percentil_Redacao'] = 1
+
 # Exibir o DataFrame resultante
 #print(df[['NU_NOTA_REDACAO', 'Performance_Redacao']])
 
@@ -99,5 +109,17 @@ df.loc[(df['Nota_Geral'] <= percentil), '10Percentil_Geral'] = 1
 
 df.to_csv('MICRODADOS_ENEM_2022_FILTRADOS.csv', index=False, sep=';')
 colunas = df.columns.tolist()
-imprimir_resumo(df, colunas, 'filtrado')
+
+
+aux = df
+colunas = ['Percentil_Redacao','Percentil_Linguagens','NU_NOTA_REDACAO', 'Acesso_Internet', 'Sexo_Masculino',
+            'Preta', 'Parda', 'Amarela', 'Indigena', 
+            'Pai_Ensino_Medio_Completo', 'Pai_Ensino_Superior_Mais', 
+            'Mae_Ensino_Medio_Completo', 'Mae_Ensino_Superior_Mais', 
+            'Ate_1212', 'Entre_1212_e_3030', 'Escola_SemResposta', 'Escola_Publica']
+
+df = df[colunas]
+df.to_csv('MICRODADOS_ENEM_2022_FILTRADOS_3.csv', index=False, sep=';')
+
+#imprimir_resumo(aux, colunas, 'filtrado')
 
