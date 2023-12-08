@@ -105,6 +105,10 @@ df.loc[(df['NU_NOTA_REDACAO'] <= percentil), 'Percentil_Redacao'] = 1
 # Exibir o DataFrame resultante
 #print(df[['NU_NOTA_REDACAO', 'Performance_Redacao']])
 
+percentil = df['Nota_Geral'].quantile(0.25)
+df['Vinte_CincoPercentil_Geral'] = 0  # Inicializa com 0
+df.loc[(df['Nota_Geral'] <= percentil), 'Vinte_CincoPercentil_Geral'] = 1
+
 #print(df)
 
 df.to_csv('MICRODADOS_ENEM_2022_FILTRADOS.csv', index=False, sep=';')
@@ -112,14 +116,14 @@ colunas = df.columns.tolist()
 
 
 aux = df
-colunas = ['Percentil_Redacao','Percentil_Linguagens','NU_NOTA_REDACAO', 'Acesso_Internet', 'Sexo_Masculino',
+colunas = ['10Percentil_Geral', 'Acesso_Internet', 'Sexo_Masculino',
             'Preta', 'Parda', 'Amarela', 'Indigena', 
             'Pai_Ensino_Medio_Completo', 'Pai_Ensino_Superior_Mais', 
             'Mae_Ensino_Medio_Completo', 'Mae_Ensino_Superior_Mais', 
             'Ate_1212', 'Entre_1212_e_3030', 'Escola_SemResposta', 'Escola_Publica']
 
 df = df[colunas]
-df.to_csv('MICRODADOS_ENEM_2022_FILTRADOS_3.csv', index=False, sep=';')
+df.to_csv('MICRODADOS_ENEM_2022_FILTRADOS_final.csv', index=False, sep=';')
 
 #imprimir_resumo(aux, colunas, 'filtrado')
 
