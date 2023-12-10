@@ -20,8 +20,8 @@ df = df[df['TP_PRESENCA_MT'] == 1]
 
 
 #imprimir_resumo(df, colunas, 'bruto')
-for coluna in colunas:
-    summary(df,coluna)
+#for coluna in colunas:
+#    summary(df,coluna)
 
 # ------------ DUMMIES --------------
 
@@ -110,6 +110,14 @@ df['Vinte_CincoPercentil_Geral'] = 0  # Inicializa com 0
 df.loc[(df['Nota_Geral'] <= percentil), 'Vinte_CincoPercentil_Geral'] = 1
 
 #print(df)
+colunas = ['NU_INSCRICAO','TP_SEXO','TP_COR_RACA',
+            'TP_LOCALIZACAO_ESC', 'TP_STATUS_REDACAO',
+            'Q001', 'Q002','Q006','Acesso_Internet',
+            'NU_NOTA_REDACAO', 'NU_NOTA_CN', 'NU_NOTA_CH', 'NU_NOTA_LC','NU_NOTA_MT',
+            'TP_PRESENCA_LC', 'TP_ESCOLA',
+            'TP_PRESENCA_CN', 'TP_PRESENCA_CH', 'TP_PRESENCA_LC','TP_PRESENCA_MT']
+
+imprimir_resumo(df, colunas, 'Geral')
 
 df.to_csv('MICRODADOS_ENEM_2022_FILTRADOS.csv', index=False, sep=';')
 colunas = df.columns.tolist()
@@ -125,5 +133,5 @@ colunas = ['10Percentil_Geral', 'Acesso_Internet', 'Sexo_Masculino',
 df = df[colunas]
 df.to_csv('MICRODADOS_ENEM_2022_FILTRADOS_final.csv', index=False, sep=';')
 
-#imprimir_resumo(aux, colunas, 'filtrado')
+imprimir_resumo(aux, colunas, 'Filtrado')
 

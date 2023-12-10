@@ -1,1 +1,0 @@
-%load_ext rpy2.ipython
