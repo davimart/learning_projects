@@ -5,7 +5,7 @@ from functions import *
 dataset = 'MICRODADOS_ENEM_2022.csv'
 colunas = ['NU_INSCRICAO','TP_SEXO','TP_COR_RACA',
             'TP_LOCALIZACAO_ESC', 'TP_STATUS_REDACAO',
-            'Q001', 'Q002','Q006','Q025',
+            'Q001', 'Q002','Q006','Q025', 'Q003', 'Q004',
             'NU_NOTA_REDACAO', 'NU_NOTA_CN', 'NU_NOTA_CH', 'NU_NOTA_LC','NU_NOTA_MT',
             'TP_PRESENCA_LC', 'TP_ESCOLA',
             'TP_PRESENCA_CN', 'TP_PRESENCA_CH', 'TP_PRESENCA_LC','TP_PRESENCA_MT']
@@ -13,10 +13,10 @@ colunas = ['NU_INSCRICAO','TP_SEXO','TP_COR_RACA',
 df = pd.read_csv(dataset, sep=';', encoding='ISO-8859-1',usecols=colunas)
 
 #remover faltantes
-df = df[df['TP_PRESENCA_CN'] == 1]
-df = df[df['TP_PRESENCA_CH'] == 1]
-df = df[df['TP_PRESENCA_LC'] == 1]
-df = df[df['TP_PRESENCA_MT'] == 1]
+#df = df[df['TP_PRESENCA_CN'] == 1]
+#df = df[df['TP_PRESENCA_CH'] == 1]
+#df = df[df['TP_PRESENCA_LC'] == 1]
+#df = df[df['TP_PRESENCA_MT'] == 1]
 
 
 #imprimir_resumo(df, colunas, 'bruto')
@@ -45,6 +45,8 @@ df = dummy_acesso_internet(df)
 
 #TIPO de escola 00 - Privada 10- Não respondeu 01-Pública
 df = dummy_tipo_escola(df)
+
+df = dummy_profissao_parente(df)
 
 
 #Varíavel dependente/target
