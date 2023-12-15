@@ -58,3 +58,29 @@ results_df <- data.frame(
 # Print the data frame
 print(results_df)
 
+
+# Predicting on the test set
+predicted_probabilities <- predict(logistic_model, newdata = test_reg, type = "response")
+predicted_classes <- ifelse(predicted_probabilities > 0.5, 1, 0)  # Assuming a threshold of 0.5
+
+# Creating a confusion matrix
+#X10Percentil_Geral
+#Vinte_CincoPercentil_Geral
+conf_matrix <- table(Actual = test_reg$Top_Geral, Predicted = predicted_classes)
+
+# Accuracy calculation
+accuracy <- sum(diag(conf_matrix)) / sum(conf_matrix)
+error_rate <- 1 - accuracy
+
+# Print the confusion matrix and metrics
+print("Confusion Matrix:")
+print(conf_matrix)
+print(paste("Accuracy:", round(accuracy, 3)))
+print(paste("Error Rate:", round(error_rate, 3)))
+
+
+# Assuming 'logistic_model' is your logistic regression model
+nagelkerke_r2 <- NagelkerkeR2(logistic_model)
+print(nagelkerke_r2)
+# Print the Nagelkerke's R^2 value
+print(paste("Nagelkerke's R^2:", round(nagelkerke_r2, 3)))
