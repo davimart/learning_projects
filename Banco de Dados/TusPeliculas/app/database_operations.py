@@ -1,4 +1,6 @@
-# database_operations.py
+import pandas
+import matplotlib.pyplot as plt
+from database_utils import *
 
 def cadastrar_pessoas():
     print("Executando cadastrar_pessoas")
@@ -104,43 +106,121 @@ def cadastrar_filmes():
 
     return query  # Retornar a consulta SQL
 
+def histograma(df):
+    """
+    Cria um histograma a partir de um DataFrame com duas colunas.
+
+    Parâmetros:
+    - df: DataFrame com duas colunas (nomes e valores)
+
+    Retorna:
+    - None (exibe o histograma)
+    """
+    if len(df.columns) != 2:
+        print("O DataFrame deve ter exatamente duas colunas.")
+        return
+
+    names_column, values_column = df.columns
+
+    plt.figure(figsize=(10, 6))
+    plt.bar(df[names_column], df[values_column], color='blue', alpha=0.7)
+    plt.xlabel(names_column)
+    plt.ylabel(values_column)
+    title = f'Histograma - {names_column} vs {values_column}'
+    plt.title(title)
+    plt.xticks(rotation=45)
+
+    salvar_imagem = input("Deseja salvar a imagem? (s/n): ").lower()
+    if salvar_imagem in ['s', 'sim']:
+        nome_arquivo = f"{title.replace(' ', '_').lower()}.png"
+        plt.savefig(nome_arquivo)
+        print(f"Imagem salva como {nome_arquivo}")
+
+    plt.show()
+
 
 def gerar_grafico_atores():
     print("Executing gerar_grafico_atores")
-    # Implement the logic to generate a graph for atores
-    # ...
-    query = "SELECT * FROM atores"
+    
+    query = """SELECT P.Nome, COUNT(*) AS Numero_Premios
+                FROM PESSOA P
+                JOIN PREMIO PR ON P.ID_Pessoa = PR.ID_Pessoa
+                WHERE PR.Tipo IN ('Melhor Ator Principal', 'Melhor Ator Coadjuvante','Melhor Atriz Principal', 'Melhor Atriz Coadjuvante') 
+                AND PR.Vencedor = True
+                GROUP BY P.ID_Pessoa, P.Nome
+                ORDER BY Numero_Premios DESC
+                LIMIT 10;"""
 
     return query  # You can modify this to return relevant information
 
 def gerar_grafico_filmes():
     print("Executing gerar_grafico_filmes")
-    # Implement the logic to generate a graph for filmes
-    # ...
-    query = "SELECT * FROM filmes"
+    
+    query = """SELECT F.Titulo_Original, COUNT(*) AS Numero_Premios
+            FROM FILME F
+            LEFT JOIN PREMIO P ON F.ID_Filme = P.ID_Filme
+            LEFT JOIN MELHOR_FILME MF ON F.ID_Filme = MF.ID_Filme,
+            WHERE P.Vencedor = TRUE OR MF.Vencedor  = TRUE
+            GROUP BY F.ID_Filme, F.Titulo_Original
+            ORDER BY Numero_Premios DESC
+            LIMIT 10;"""
 
     return query  # You can modify this to return relevant information
 
 def gerar_grafico_arrecadacao():
     print("Executing gerar_grafico_arrecadacao")
-    # Implement the logic to generate a graph for arrecadacao
-    # ...
-    query = "SELECT * FROM arrecadacao"
+     
+    query = """SELECT Titulo_Original, Arrec_Total
+                FROM FILME
+                ORDER BY Arrec_Total DESC
+                LIMIT 10;"""
 
     return query  # You can modify this to return relevant information
 
 def listar_melhores_atores():
     print("Executing listar_melhores_atores")
-    # Implement the logic to list melhores atores
-    # ...
-    query = "SELECT * FROM melhores_atores"
+
+    query = """SELECT P.Nome
+                FROM PESSOA P
+                NOT EXISTS (
+                    SELECT E.ID_Edicao
+                    FROM EVENTO E
+                    WHERE NOT EXISTS (
+                    SELECT 1
+                    FROM PREMIO PR
+                    WHERE PR.ID_Pessoa = P.ID_Pessoa
+                        AND PR.ID_Edicao = E.ID_Edicao
+                        AND PR.Tipo IN ('Melhor Ator Principal', 'Melhor Ator Coadjuvante','Melhor Atriz Principal', 'Melhor Atriz Coadjuvante')
+                    )
+                );"""
 
     return query  # You can modify this to return relevant information
 
-def listar_premios_por_evento(evento_id):
-    print(f"Executing listar_premios_por_evento for evento_id {evento_id}")
-    # Implement the logic to list premios for a given evento
-    # ...
-    query = f"SELECT * FROM premios WHERE evento_id = {evento_id}"
+def listar_premios_por_evento():
+    edition_id = input("Qual é o ID da Edição? ")
+    print("\nCATEGORIAS:")
+    categorias = ('Melhor Filme', 'Melhor Ator Principal', 'Melhor Ator Coadjuvante', 'Melhor Atriz Principal', 'Melhor Atriz Coadjuvante', 'Melhor Diretor')
 
-    return query  # You can modify this to return relevant information
+    for i, categoria in enumerate(categorias, start=1):
+        print(f"{i}. {categoria}")
+
+    numero_categoria = int(input("Escolha o número da categoria do Prêmio: "))
+
+    if 1 <= numero_categoria <= len(categorias):
+        categoria = categorias[numero_categoria - 1]
+        print(f"Executando listar_premios_por_evento para edition_id {edition_id} e categoria {categoria}")
+      
+        if categoria == 'Melhor Filme':
+            query = f"""SELECT F.Titulo_Original, MF.Vencedor
+                        FROM MELHOR_FILME MF
+                        JOIN FILME F ON MF.ID_Filme = F.ID_Filme -- Assuming 'Melhor ' is the prefix for film categories
+                        WHERE MF.ID_Edicao = {edition_id};"""
+        else:
+            query = f"""SELECT P.Nome, PR.Vencedor
+                        FROM PREMIO PR
+                        JOIN PESSOA P ON PR.ID_Pessoa = P.ID_Pessoa
+                        WHERE PR.ID_Edicao =  {edition_id} and PR.Tipo = {categoria};"""
+        return query  # You can modify this to return relevant information
+    else:
+        print("Número de categoria inválido. Por favor, escolha um número válido.")
+        return None
