@@ -8,6 +8,9 @@ Para o sistema de Filmes, vocês vão ter que desenvolver:
 
 -- Juri imparcial
 
+-- a ideia na verdade é pegar todos os filmes indicados 
+-- e dps juntar os ids das pessoas que trabalharam nesse filme
+
 CREATE OR REPLACE FUNCTION JURI_IMPARCIAL() RETURNS TRIGGER AS $$
 BEGIN
 IF NEW.ID_Pessoa IN
@@ -21,12 +24,19 @@ WITH CombinedPeople AS (
     NATURAL JOIN ROTEIRISTA
 ),
 
+/*Acho que é besteira e pode ser só
+WITH CombinedPeople AS (
+    SELECT *
+    FROM PESSOA
+),
+*/
+
 -- considerando só as pessoas que trabalharam nos filmes indicados alguma vez em todos os tempos
 CombinedPeopleIndication AS (
     SELECT *
     FROM CombinedPeople
     JOIN PREMIO ON PREMIO.ID_Filme = CombinedPeople.ID_Filme
-    JOIN MELHOR_FILME ON MELHOR_FILME.ID_Filme = CombinedPeople.ID_Filme
+    JOIN MELHOR_FILME ON MELHOR_FILME.ID_Filme = CombinedPeople.ID_Filme -- não existe ID.Filme aqui
 ) --considerando só a edição específica
 
 SELECT ID_Pessoa
