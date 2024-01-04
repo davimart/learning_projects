@@ -40,13 +40,14 @@ def cadastrar_edicao():
     print("Executando cadastrar_edicao")
 
     # Obter entradas do usuário
+    id_edicao = input("Digite o ID da edição: ")
     nome_evento = input("Digite o nome do evento: ")
     ano = input("Digite o ano da edição: ")
     localidade = input("Digite a localidade da edição: ")
 
     # Construir a consulta SQL
-    query = f"INSERT INTO EDICAO (Nome_Evento, Ano, Localidade) " \
-            f"VALUES ('{nome_evento}', '{ano}', '{localidade}');"
+    query = f"INSERT INTO EDICAO (ID_Edicao,Nome_Evento, Ano, Localidade) " \
+            f"VALUES ('{id_edicao}','{nome_evento}', '{ano}', '{localidade}');"
 
     return query  # Retornar a consulta SQL
 
@@ -129,14 +130,16 @@ def histograma(df):
     title = f'Histograma - {names_column} vs {values_column}'
     plt.title(title)
     plt.xticks(rotation=45)
-
+    plt.show()
+    
     salvar_imagem = input("Deseja salvar a imagem? (s/n): ").lower()
     if salvar_imagem in ['s', 'sim']:
         nome_arquivo = f"{title.replace(' ', '_').lower()}.png"
         plt.savefig(nome_arquivo)
         print(f"Imagem salva como {nome_arquivo}")
-
-    plt.show()
+    
+    plt.close()
+    
 
 
 def gerar_grafico_atores():
@@ -159,7 +162,7 @@ def gerar_grafico_filmes():
     query = """SELECT F.Titulo_Original, COUNT(*) AS Numero_Premios
             FROM FILME F
             LEFT JOIN PREMIO P ON F.ID_Filme = P.ID_Filme
-            LEFT JOIN MELHOR_FILME MF ON F.ID_Filme = MF.ID_Filme,
+            LEFT JOIN MELHOR_FILME MF ON F.ID_Filme = MF.ID_Filme
             WHERE P.Vencedor = TRUE OR MF.Vencedor  = TRUE
             GROUP BY F.ID_Filme, F.Titulo_Original
             ORDER BY Numero_Premios DESC
@@ -211,14 +214,16 @@ def listar_premios_por_evento():
         print(f"Executando listar_premios_por_evento para edition_id {edition_id} e categoria {categoria}")
       
         if categoria == 'Melhor Filme':
-            query = f"""SELECT F.Titulo_Original, MF.Vencedor
+            query = f"""SELECT F.Titulo_Original, Nome_Evento, Ano,'Melhor Filme' AS Premio, MF.Vencedor
                         FROM MELHOR_FILME MF
-                        JOIN FILME F ON MF.ID_Filme = F.ID_Filme -- Assuming 'Melhor ' is the prefix for film categories
+                        JOIN FILME F ON MF.ID_Filme = F.ID_Filme
+                        JOIN EDICAO E ON MF.ID_Edicao = E.ID_Edicao
                         WHERE MF.ID_Edicao = {edition_id};"""
         else:
-            query = f"""SELECT P.Nome, PR.Vencedor
+            query = f"""SELECT P.Nome, Nome_Evento, Ano, PR.Tipo AS Premio, PR.Vencedor
                         FROM PREMIO PR
                         JOIN PESSOA P ON PR.ID_Pessoa = P.ID_Pessoa
+                        JOIN EDICAO E ON PR.ID_Edicao = E.ID_Edicao
                         WHERE PR.ID_Edicao =  {edition_id} and PR.Tipo = {categoria};"""
         return query  # You can modify this to return relevant information
     else:

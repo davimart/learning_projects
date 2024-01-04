@@ -9,40 +9,30 @@ Para o sistema de Filmes, vocês vão ter que desenvolver:
 -- Juri imparcial
 
 -- a ideia na verdade é pegar todos os filmes indicados 
--- e dps juntar os ids das pessoas que trabalharam nesse filme
+-- juntar com todas as pessoas que trabalharam em filmes e considerar a edição
 
 CREATE OR REPLACE FUNCTION JURI_IMPARCIAL() RETURNS TRIGGER AS $$
 BEGIN
 IF NEW.ID_Pessoa IN
-    (
---juntando pessoas que trabalharam nos filmes
-WITH CombinedPeople AS (
-    SELECT *
-    FROM DIRETOR
-    NATURAL JOIN PRODUTOR
-    NATURAL JOIN ATOR
-    NATURAL JOIN ROTEIRISTA
+    (WITH CombinedPeople AS (
+    SELECT ID_Filme, ID_Pessoa
+    FROM DIRETOR AS D
+    FULL OUTER JOIN PRODUTOR AS P USING(ID_Pessoa,ID_Filme)
+    FULL OUTER JOIN ATOR AS A USING(ID_Pessoa,ID_Filme)
+    FULL OUTER JOIN ROTEIRISTA AS R USING(ID_Pessoa,ID_Filme)
 ),
 
-/*Acho que é besteira e pode ser só
-WITH CombinedPeople AS (
-    SELECT *
-    FROM PESSOA
-),
-*/
+FilmesIndicados AS (
+    Select ID_Edicao, ID_Filme, ID_Pessoa
+    FROM PREMIO
+    FULL OUTER JOIN MELHOR_FILME USING (ID_Edicao, ID_Filme)
+)
 
--- considerando só as pessoas que trabalharam nos filmes indicados alguma vez em todos os tempos
-CombinedPeopleIndication AS (
-    SELECT *
-    FROM CombinedPeople
-    JOIN PREMIO ON PREMIO.ID_Filme = CombinedPeople.ID_Filme
-    JOIN MELHOR_FILME ON MELHOR_FILME.ID_Filme = CombinedPeople.ID_Filme -- não existe ID.Filme aqui
-) --considerando só a edição específica
 
 SELECT ID_Pessoa
-FROM CombinedPeopleIndication
-WHERE NEW.ID_Edicao = CombinedPeopleIndication.ID_Edicao
-   OR JURI.ID_Edicao = CombinedPeopleIndication.ID_Edicao) THEN RAISE
+FROM FilmesIndicados
+JOIN CombinedPeople USING(ID_Filme, ID_Pessoa)
+WHERE NEW.ID_Edicao = ID_Edicao) THEN RAISE
 EXCEPTION 'Esta pessoa participa de um filme nesta edição e não pode ser juri. ID_Pessoa: %',
           NEW.ID_Pessoa;
 

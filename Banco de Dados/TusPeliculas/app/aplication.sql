@@ -86,7 +86,7 @@ LIMIT 10;
 SELECT F.Titulo_Original, COUNT(*) AS Numero_Premios
 FROM FILME F
 LEFT JOIN PREMIO P ON F.ID_Filme = P.ID_Filme
-LEFT JOIN MELHOR_FILME MF ON F.ID_Filme = MF.ID_Filme,
+LEFT JOIN MELHOR_FILME MF ON F.ID_Filme = MF.ID_Filme
 WHERE P.Vencedor = TRUE OR MF.Vencedor  = TRUE
 GROUP BY F.ID_Filme, F.Titulo_Original
 ORDER BY Numero_Premios DESC
@@ -122,15 +122,17 @@ NOT EXISTS (
 DECLARE @edition_id INT = edicao;
 DECLARE @tipo INT = tipo;
 -- For authors (Diretor, Produtor, Ator, Roteirista), if applicable
-SELECT P.Nome, PR.Vencedor
+SELECT P.Nome, Nome_Evento, Ano, PR.Tipo AS Premio, PR.Vencedor
 FROM PREMIO PR
 JOIN PESSOA P ON PR.ID_Pessoa = P.ID_Pessoa
+JOIN EDICAO E ON PR.ID_Edicao = E.ID_Edicao
 WHERE PR.ID_Edicao =  @edition_id and PR.Tipo = @tipo;
 
 -- For films (Melhor Filme, etc.)
-SELECT F.Titulo_Original, MF.Vencedor
+SELECT F.Titulo_Original, Nome_Evento, Ano,'Melhor Filme' AS Premio, MF.Vencedor
 FROM MELHOR_FILME MF
-JOIN FILME F ON MF.ID_Filme = F.ID_Filme -- Assuming 'Melhor ' is the prefix for film categories
+JOIN FILME F ON MF.ID_Filme = F.ID_Filme
+JOIN EDICAO E ON MF.ID_Edicao = E.ID_Edicao
 WHERE MF.ID_Edicao = @edition_id;
 
 
